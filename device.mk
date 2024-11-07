@@ -159,6 +159,10 @@ PRODUCT_PACKAGES += \
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+# Device Settings
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
 # Display
 PRODUCT_VENDOR_PROPERTIES += \
     persist.sys.sf.native_mode=269 \
@@ -256,6 +260,7 @@ PRODUCT_PACKAGES += \
     AliothSettings \
     AliothSystemUI \
     AOSPAAliothFrameworks \
+    AOSPAAliothSettingsOverlay \
     AOSPAAliothSystemUI \
     SettingsOverlayM2012K11AG \
     SettingsOverlayM2012K11AI \

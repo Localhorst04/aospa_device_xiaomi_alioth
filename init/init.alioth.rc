@@ -35,7 +35,10 @@ on post-fs-data
 
 on boot
     chown system system /sys/touchpanel/double_tap
+    chown system system /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate
+    chmod 0660 /sys/devices/platform/goodix_ts.0/goodix_ts_report_rate
     chown system system /sys/class/touch/touch_dev/palm_sensor
+    chmod 0664 /sys/class/touch/touch_dev/palm_sensor
     chown system system /sys/class/thermal/thermal_message/sconfig
     copy  /vendor/etc/tunings.txt /mnt/vendor/persist/vpp/tunings.txt
     mkdir /mnt/vendor/persist/camera 0755 system cameraserver
@@ -95,3 +98,7 @@ service nqnfc_2_0_hal_service /vendor/bin/hw/vendor.nxp.hardware.nfc@2.0-service
 
 on boot && property:ro.boot.product.hardware.sku=pro
     enable nqnfc_2_0_hal_service
+
+on property:sys.boot_completed=1
+    # Set thermal mode to mgame
+    write /sys/devices/virtual/thermal/thermal_message/sconfig 20
